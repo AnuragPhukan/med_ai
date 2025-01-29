@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MedResearch - Error</title>
+    <!-- Include Bootstrap CSS and custom CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+        <a class="navbar-brand" href="/">MedResearch</a>
+    </nav>
+    <div class="container mt-5">
+        <h1 class="mb-4">An Error Occurred</h1>
+        <p>{{ message }}</p>
+        <a href="/">Back to Home</a>
+    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        &copy; {{ current_year }} MedResearch. All rights reserved.
+    </footer>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MedResearch - Forest Plot</title>
+    <!-- Include Bootstrap CSS and custom CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Include Plotly JS -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+        <a class="navbar-brand" href="/">MedResearch</a>
+    </nav>
+    <div class="container mt-4">
+        <h1 class="mb-4">Forest Plot</h1>
+        <a href="/results">Back to Results</a> | 
+        <a href="/download/forest_plot">Download Forest Plot</a>
+        <hr>
+        <div id="forest_plot"></div>
+    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        &copy; {{ current_year }} MedResearch. All rights reserved.
+    </footer>
+    <script>
+        var forestPlotData = {{ forest_plot_json | safe }};
+        Plotly.react('forest_plot', forestPlotData.data, forestPlotData.layout);
+    </script>
+</body>
+</html>

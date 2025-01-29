@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MedResearch - Co-authorship Network</title>
+    <!-- Include Bootstrap CSS and custom CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Include Plotly JS -->
+    <script src="https://cdn.plot.ly/plotly-2.6.3.min.js"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+        <a class="navbar-brand" href="/">MedResearch</a>
+    </nav>
+    <div class="container mt-4">
+        <h1 class="mb-4">Co-authorship Network</h1>
+        <a href="/results">Back to Results</a>
+        <hr>
+        <div id="coauthor_network"></div>
+    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        &copy; {{ current_year }} MedResearch. All rights reserved.
+    </footer>
+    <script>
+        var coauthorNetworkData = {{ coauthor_network_json | safe }};
+        Plotly.react('coauthor_network', coauthorNetworkData.data, coauthorNetworkData.layout);
+    </script>
+</body>
+</html>

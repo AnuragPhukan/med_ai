@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MedResearch - Home</title>
+    <!-- Include Bootstrap CSS and Font Awesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!-- Google Font for "M" logo -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap">
+    <!-- Include external stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="sidebar-collapsed index-page">
+    <!-- Left Sidebar -->
+    <div class="sidebar collapsed" id="sidebar">
+        <div class="sidebar-header" id="sidebarHeader">
+            <h1>M</h1>
+        </div>
+        <div class="sidebar-menu">
+            <div class="menu-section">
+                <h5>Today</h5>
+                <div class="menu-item">
+                    <i class="fas fa-sun"></i>
+                    <span>Cancer</span>
+                </div>
+            </div>
+            <div class="menu-section">
+                <h5>Last 30 Days</h5>
+                <div class="menu-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Breast Cancer</span>
+                </div>
+                <div class="menu-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Breast Cancer</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>MedResearch</h1>
+        <p class="tagline">Empower your decisions with cutting-edge research.</p>
+        <div class="search-container">
+            <form action="/search" method="post" onsubmit="showLoading()" style="flex:1; display:flex; align-items:center;">
+                <input type="text" name="keyword" placeholder="Ask the research..." required>
+                <button type="button" class="filter-btn" id="filterToggle"><i class="fas fa-filter"></i>Filter</button>
+                <button type="submit" class="search-btn"><i class="fas fa-search"></i>Search</button>
+            </form>
+        </div>
+        <div class="footer">
+            &copy; {{ current_year }} MedResearch. All rights reserved.
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loading" class="loading-screen">
+        <img src="{{ url_for('static', filename='loading_icon.gif') }}" alt="Loading...">
+    </div>
+
+    <!-- Right Sidebar (Filters) -->
+    <div class="right-sidebar" id="rightSidebar">
+        <div class="right-sidebar-header">
+            <h5>Apply filters</h5>
+            <button class="close-btn" id="closeFilter"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="filter-option">
+            <label for="yearFilter">Published since</label>
+            <select id="yearFilter" name="yearFilter">
+                <option value="">All</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+            </select>
+        </div>
+        <div class="filter-option">
+            <label for="citationMin">Min Citations</label>
+            <input type="number" id="citationMin" name="citationMin" placeholder="e.g. 10">
+        </div>
+        <div class="filter-option">
+            <label for="publicationType">Publication Type</label>
+            <select id="publicationType" name="publicationType">
+                <option value="">Any</option>
+                <option value="JournalArticle">Journal Article</option>
+                <option value="Review">Review</option>
+            </select>
+        </div>
+        <div class="filter-option">
+            <label for="venueFilter">Venue</label>
+            <input type="text" id="venueFilter" name="venueFilter" placeholder="e.g. Nature">
+        </div>
+        <div class="filter-option">
+            <label for="authorIdFilter">Author ID</label>
+            <input type="text" id="authorIdFilter" name="authorIdFilter" placeholder="e.g. 123456">
+        </div>
+        <div class="apply-filters-btn">
+            <button id="applyFilters">Apply</button>
+        </div>
+    </div>
+
+    <!-- Include jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const sidebarHeader = document.getElementById('sidebarHeader');
+        const filterToggle = document.getElementById('filterToggle');
+        const rightSidebar = document.getElementById('rightSidebar');
+        const closeFilter = document.getElementById('closeFilter');
+        const applyFiltersBtn = document.getElementById('applyFilters');
+
+        // Toggle sidebar on "M" click
+        sidebarHeader.addEventListener('click', () => {
+            if (sidebar.classList.contains('collapsed')) {
+                sidebar.classList.remove('collapsed');
+                sidebar.classList.add('expanded');
+                document.body.classList.add('sidebar-expanded');
+            } else {
+                sidebar.classList.remove('expanded');
+                sidebar.classList.add('collapsed');
+                document.body.classList.remove('sidebar-expanded');
+            }
+        });
+
+        filterToggle.addEventListener('click', () => {
+            rightSidebar.classList.add('show');
+        });
+
+        closeFilter.addEventListener('click', () => {
+            rightSidebar.classList.remove('show');
+        });
+
+        applyFiltersBtn.addEventListener('click', () => {
+            rightSidebar.classList.remove('show');
+        });
+
+        function showLoading() {
+            document.getElementById('loading').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>
