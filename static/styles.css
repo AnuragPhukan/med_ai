@@ -1,0 +1,442 @@
+/* styles.css */
+
+/* Existing Styles (DO NOT DELETE) */
+/* Body styling */
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-image: url("../static/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: #ffffff; /* White text for contrast */
+}
+
+/* Navbar styling */
+.navbar {
+    background-color: #003366; /* Dark blue color */
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #ffffff !important;
+}
+
+.nav-link {
+    color: #ffffff !important;
+}
+
+.nav-link:hover {
+    color: #cce6ff !important;
+}
+
+/* Left and Right Column Styling */
+.left-column {
+    background-color: transparent;
+    overflow-y: auto;
+    height: calc(100vh - 100px); /* Adjust based on navbar and footer height */
+    padding-right: 15px;
+}
+
+.right-column {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 5px;
+    height: calc(100vh - 100px);
+    overflow-y: auto;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 15px;
+}
+
+.chat-input {
+    display: flex;
+}
+
+.chat-input input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.chat-bubble {
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.chat-bubble.user {
+    background-color: #d1ecf1;
+    align-self: flex-end;
+}
+
+.chat-bubble.bot {
+    background-color: #f8d7da;
+    align-self: flex-start;
+}
+
+/* Container */
+.container {
+    max-width: 900px;
+}
+
+/* Search form styling */
+.height {
+    height: 80vh;
+}
+
+.form {
+    position: relative;
+    margin-top: 100px;
+}
+
+.form .fa-search {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #9ca3af;
+}
+
+.form span {
+    position: absolute;
+    right: 17px;
+    top: 13px;
+    padding: 2px;
+    border-left: 1px solid #d1d5db;
+}
+
+.left-pan {
+    padding-left: 7px;
+}
+
+.left-pan i {
+    padding-left: 10px;
+}
+
+.form-input {
+    height: 55px;
+    text-indent: 33px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.form-input:focus {
+    box-shadow: none;
+    border: none;
+}
+
+.form-input::placeholder {
+    color: #9ca3af;
+}
+
+/* Loading animation */
+#loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff; /* Solid white background */
+    z-index: 9999;
+    display: none; /* Hide by default */
+    justify-content: center;
+    align-items: center;
+}
+
+#loading img {
+    width: 150px; /* Medium size loading icon */
+    height: auto;
+}
+
+/* Footer styling */
+.footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color: #999;
+    font-size: 0.9rem;
+    background: none;
+}
+
+/* -------------------------------------- */
+/* Index Page Overrides */
+/* -------------------------------------- */
+
+body.index-page {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f8fcfb;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #ffffff;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s ease;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.sidebar.collapsed {
+    width: 60px;
+}
+
+.sidebar.expanded {
+    width: 220px;
+}
+
+/* Top Logo / Toggle */
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.sidebar-header h1 {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: #333;
+    transition: transform 0.3s ease;
+}
+
+/* Sidebar Navigation */
+.sidebar-menu {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.menu-section {
+    margin-bottom: 20px;
+    padding: 0 10px;
+}
+
+.menu-section h5 {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.95rem;
+    color: #333;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background 0.1s ease;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.menu-item:hover {
+    background: #f1f1f1;
+}
+
+.menu-item i {
+    font-size: 1.2rem;
+    width: 30px;
+    text-align: center;
+    color: #666;
+}
+
+.menu-item span {
+    margin-left: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* When Expanded */
+.sidebar.expanded .menu-section h5,
+.sidebar.expanded .menu-item span {
+    opacity: 1;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+    position: relative;
+    transition: margin-left 0.3s ease;
+    margin-left: 60px; /* match collapsed width of sidebar */
+}
+
+body.sidebar-expanded .main-content {
+    margin-left: 220px; /* match expanded width of sidebar */
+}
+
+.main-content h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.main-content p.tagline {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+/* Search Bar */
+.search-container {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 50px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 10px 20px;
+    max-width: 600px;
+    width: 100%;
+}
+
+.search-container input[type="text"] {
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    color: #333;
+    flex: 1;
+    background: #ffffff;
+}
+
+.search-container input::placeholder {
+    color: #aaa;
+}
+
+.search-container input[type="text"]:focus {
+    outline: none;
+    box-shadow: none;
+    background-color: #ffffff;
+}
+
+.filter-btn, .search-btn {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.filter-btn i, .search-btn i {
+    margin-right: 5px;
+}
+
+.filter-btn:hover, .search-btn:hover {
+    color: #000;
+}
+
+/* Right Sidebar (Filters) */
+.right-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background: #ffffff;
+    border-left: 1px solid #ddd;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+    transform: translateX(100%);
+    z-index: 1100;
+}
+
+.right-sidebar.show {
+    transform: translateX(0);
+}
+
+.right-sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.right-sidebar-header h5 {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.right-sidebar-header .close-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.filter-option {
+    margin-bottom: 15px;
+}
+
+.filter-option label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.filter-option input[type="number"], .filter-option select, .filter-option input[type="text"] {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.apply-filters-btn {
+    margin-top: auto;
+    text-align: right;
+}
+
+.apply-filters-btn button {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.apply-filters-btn button:hover {
+    background: #0056b3;
+}
